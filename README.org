@@ -23,8 +23,9 @@
      Internet.
 
 ** Functional Milestones
-   - [ ] Successful bbb-oe image
-   - [ ] Compile a working image of ccl
+   - [X] Successful bbb-oe image
+   - [X] Compile a working image of ccl
+   - [ ] publish ccl beaglebone black image on github page.
    - [ ] Replace my openwrt router
    - [ ] DHCP server dishing out isolated networks
    - [ ] Scanning information, rudimentary GUI
@@ -39,9 +40,13 @@
   xtend the deadline out a week everytime we mark an item
    
    - [X] setup gitlab page and document/automate this
-   - [ ] boot into bbb with oe
+   - [X] boot into bbb with oe
      [[file:./boot.org]]
-   - [ ] publish ccl beaglebone black image on github page.
+   - [ ] gcc, make in image
+     
+   - [ ] Copy ccl bootstrap image over to bbb
+     
+   - [ ] Compile/bootstrap ccl on the beaglebone
    - [ ] copy over ccl to compile (ssh?)
    - [ ] compile ccl, get image off of device
    - [ ] recipe to install the beaglebone ccl image

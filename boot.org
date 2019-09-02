@@ -46,3 +46,33 @@ I used gparted to make a fat32 and a ext4 file system.
 ~$ cp MLO-beaglebone /media/user/BOOT/MLO
 ~$ cp u-boot-beaglebone.img /media/user/BOOT/u-boot.img
 ~$ sudo tar -xvf core-image-base-beaglebone.tar.bz2 -C /media/user/ROOT/
+
+
+** Mount BOOT && ROOT
+#+BEGIN_SRC sh :dir /sudo::/tmp
+   mkdir -p /media/egustafs/BOOT
+   mkdir -p /media/egustafs/ROOT
+   mount /dev/mmcblk0p1 /media/egustafs/BOOT 
+   mount /dev/mmcblk0p2 /media/egustafs/ROOT
+#+END_SRC
+
+#+RESULTS:
+
+
+#+BEGIN_SRC sh :dir /sudo::/media/egustafs/BOOT :var TARGET="/home/egustafs/oe/poky/build/tmp/deploy/images/beaglebone-yocto"
+   cp ${TARGET}/MLO-beaglebone-yocto MLO
+   cp ${TARGET}/u-boot.img u-boot.img
+#+END_SRC
+
+#+RESULTS:
+
+
+#+BEGIN_SRC sh :dir /sudo::/media/egustafs/ROOT :var TARGET="/home/egustafs/oe/poky/build/tmp/deploy/images/beaglebone-yocto"
+   tar -xvf ${TARGET}/core-image-sato-dev-beaglebone-yocto.tar.bz2 -C /media/egustafs/ROOT/
+#+END_SRC
+
+
+
+
+
+
