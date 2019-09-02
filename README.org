@@ -1,9 +1,107 @@
-# bbb-oe
-### _Your Name <your.name@example.com>_
+#+title: BeagleBone Black - Open Embedded Notes
+#+author: Eric Gustafson
 
-This is a project to do ... something.
+* Objective
+  To automate the building and deploying of a beagle bone black image
+  that has a fully functional ccl development environment.
+  
+  Implement a hotspot that dishes out segmented networks that won't
+  allow cross talk between networks.  
 
-## License
+** Use Cases
 
-Specify license here
+*** Profile based Isolation
+
+**** IOT Isolation
+   My smart tv will only be allowed to access a single remote server
+   with an outbound connection.  No other device on the network will be 
+   allowed to send it IP packets.
+
+**** Untrusted device isolation
+     My tablets and smart phones won't be able to access any other
+     devices on the network.  The may only talk to the larger
+     Internet.
+
+** Functional Milestones
+   - [ ] Successful bbb-oe image
+   - [ ] Compile a working image of ccl
+   - [ ] Replace my openwrt router
+   - [ ] DHCP server dishing out isolated networks
+   - [ ] Scanning information, rudimentary GUI
+   - [ ] Lost mode and commissioning prototype
+   - [ ] OTA firmware upgrades
+   
+
+* TODO BBB Router
+  DEADLINE: <2019-09-06 Fri>
+  [2019-09-02 Mon]
+
+  xtend the deadline out a week everytime we mark an item
+   
+   - [X] setup gitlab page and document/automate this
+   - [ ] boot into bbb with oe
+     [[file:./boot.org]]
+   - [ ] publish ccl beaglebone black image on github page.
+   - [ ] copy over ccl to compile (ssh?)
+   - [ ] compile ccl, get image off of device
+   - [ ] recipe to install the beaglebone ccl image
+   - [ ] Get lisp-dhcp image working
+   - [ ] configure/automate hotspot work
+   - [ ] OTA updates of OE image
+   - [ ] VPN setup on 2nd server -  Can't be traced to NG.
+
+** Zigbee IOT
+     - [ ] ezsp version command
+     - [ ] ezsp lights off broadcast
+     - [ ] lat/long sunrise, sunset 
+
+* TODO install ccl, bitbake onto beaglebone
+NOTE: Starting bitbake server...
+NOTE: Starting bitbake server...
+WARNING: github archive files are not guaranteed to be stable and may be re-generated over time. If the latter occurs, the checksums will likely change and the recipe will fail at do_fetch. It is recommended that you point to an actual commit or tag in the repository instead (using the repository URL in conjunction with the -S/--srcrev option).
+INFO: Fetching https://github.com/Clozure/ccl/archive/v1.11.5.tar.gz...
+Parsing recipes: 100% |#########################################################################################################################################################| Time: 0:00:32
+Parsing of 783 .bb files complete (0 cached, 783 parsed). 1304 targets, 40 skipped, 0 masked, 0 errors.
+NOTE: Resolving any missing task queue dependencies
+
+Build Configuration:
+BB_VERSION           = "1.42.0"
+BUILD_SYS            = "x86_64-linux"
+NATIVELSBSTRING      = "universal"
+TARGET_SYS           = "i586-poky-linux"
+MACHINE              = "qemux86"
+DISTRO               = "poky"
+DISTRO_VERSION       = "2.7.1"
+TUNE_FEATURES        = "m32 i586"
+TARGET_FPU           = ""
+meta                 
+meta-poky            
+meta-yocto-bsp       
+workspace            = "my-yocto-2.7.1:38d5c8ea98cfa49825c473eba8984c12edf062be"
+
+Initialising tasks: 100% |######################################################################################################################################################| Time: 0:00:00
+NOTE: Executing RunQueue Tasks
+NOTE: Tasks Summary: Attempted 2 tasks of which 0 didn't need to be rerun and all succeeded.
+INFO: Using default source tree path /home/egustafs/oe/poky/build/workspace/sources/ccl
+NOTE: Reconnecting to bitbake server...
+NOTE: Retrying server connection (#1)...
+NOTE: Reconnecting to bitbake server...
+NOTE: Previous bitbake instance shutting down?, waiting to retry...
+NOTE: Retrying server connection (#2)...
+NOTE: Starting bitbake server...
+INFO: Using source tree as build directory since that would be the default for this recipe
+INFO: Recipe /home/egustafs/oe/poky/build/workspace/recipes/ccl/ccl_1.11.5.bb has been automatically created; further editing may be required to make it fully functional
+
+
+ | recipe  | [[file:~/oe/poky/build/workspace/recipes/ccl/ccl_1.11.5.bb]]                   |
+ | binary  | [[file:~/oe/poky/build/workspace/sources/ccl/lisp-kernel/linuxx8632]]          |
+ | sysroot | [[file:~/oe/poky/build/tmp/work/i586-poky-linux/ccl/1.11.5-r0/recipe-sysroot]] |
+
+
+* References
+
+  | Description          | Link                                                  |
+  |----------------------+-------------------------------------------------------|
+  | ccl                  | [[https://github.com/Clozure/ccl/archive/v1.11.5.tar.gz]] |
+  | Install build to bbb | http://android.serverbox.ch/?p=1273                   |
 

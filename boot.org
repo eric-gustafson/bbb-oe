@@ -1,0 +1,48 @@
+#+title: BeagleBone Black - Open Embedded Boot Notes
+
+  These are internal notes to self.  
+
+* Objective
+  Document what we need to do, and then automate the steps needed to turn
+  a successful yocto open-embedded beagle-bone black compile (bitbake) into
+  a running system
+
+
+* Working OE Directory
+
+  [[file:~/oe]]
+
+#+BEGIN_SRC sh
+  (cd ~/oe/bbb/meta-bbb && git remote -v )
+  (cd ~/oe/poky && git remote -v )
+#+END_SRC
+
+#+RESULTS:
+| origin | git://github.com/jumpnow/meta-bbb (fetch) |
+| origin | git://github.com/jumpnow/meta-bbb (push)  |
+| origin | git://git.yoctoproject.org/poky (fetch)   |
+| origin | git://git.yoctoproject.org/poky (push)    |
+
+
+
+* SD Card
+
+On my machine, target mmcblk0
+
+#+begin_example :exports all
+mmcblk0     179:0    0  29.7G  0 disk 
+├─mmcblk0p1 179:1    0    64M  0 part 
+└─mmcblk0p2 179:2    0  29.7G  0 part 
+#+end_example
+
+
+I used gparted to make a fat32 and a ext4 file system.
+
+
+* Copy files to sd card
+  Per [[http://android.serverbox.ch/?p=1273]] :
+
+~$ cd yocto/poky/build/tmp/deploy/images/beaglebone
+~$ cp MLO-beaglebone /media/user/BOOT/MLO
+~$ cp u-boot-beaglebone.img /media/user/BOOT/u-boot.img
+~$ sudo tar -xvf core-image-base-beaglebone.tar.bz2 -C /media/user/ROOT/
