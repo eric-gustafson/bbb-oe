@@ -11,6 +11,7 @@
 * Working OE Directory
 
   [[file:~/oe]]
+  [[file:~/oe/poky/build/tmp/deploy/images]]
 
 #+BEGIN_SRC sh
   (cd ~/oe/bbb/meta-bbb && git remote -v )
@@ -70,6 +71,8 @@ I used gparted to make a fat32 and a ext4 file system.
 #+BEGIN_SRC sh :dir /sudo::/media/egustafs/ROOT :var TARGET="/home/egustafs/oe/poky/build/tmp/deploy/images/beaglebone-yocto"
    tar -xvf ${TARGET}/core-image-sato-dev-beaglebone-yocto.tar.bz2 -C /media/egustafs/ROOT/
 #+END_SRC
+
+
 
 
 

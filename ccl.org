@@ -1,0 +1,32 @@
+#+title: BeagleBone Black - Open Embedded CCL Recipe Notes
+
+  These are internal notes to self.
+
+* Objective
+
+  To bring up a clozure common lisp (ccl) image on the beaglebone
+  black.  I don't think it's possible to do this with a standard
+  x-compile, like the other software since ccl bootstraps itself,
+  we need it running on that platform.
+
+
+* Resources
+
+  | ccl docs    | [[https://ccl.clozure.com/docs/ccl.html#building-clozure-cl-from-its-source-code]]              |
+  | ccl on bbb  | [[https://github.com/bhyde/bbb]]                                                                |
+  | ccl on rbpi | [[http://www.raspihub.com/go/f5780dbf11dabc60771e67b357ae947bc6b3fd87f35d5f38e7d511ff88e08d0c]] |
+  | recipe      | [[file:~/oe/poky/build/workspace/recipes/ccl/ccl_1.11.5.bb]]                                    |
+  | binary      | [[file:~/oe/poky/build/workspace/sources/ccl/lisp-kernel/linuxx8632]]                           |
+  | sysroot     | [[file:~/oe/poky/build/tmp/work/i586-poky-linux/ccl/1.11.5-r0/recipe-sysroot]]                  |
+
+
+* 
+
+ I've built the thing under oe, but I can't run the bootstrap process
+ per the ccl documenation because the image is of the wrong type.
+ That needs to be executed on the target.  Another way of saying it,
+ is CCL can't target the bootstrap to another platform.
+
+ - [ ] Boot into the image, and run the bootstrap processes
+ - [ ] Save binary back to build machine
+ - [ ] Check binary in, the recipe simply pulls the binary
